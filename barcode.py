@@ -122,32 +122,32 @@ def gen_barcodes_groups(group_num, group_len, barcode_len, rate, repeat_num, min
 
     return all_barcodes
 
+
 def print_barcodes_groups(all_barcodes, group_num, group_len):
     """
     按组打印barcodes
     :param all_barcodes:
+    
     :return:
     """
-    for i in range(group_num):
-        print("第 " + str(i + 1) + " 组")
-        for j in range(group_len):
-            print("第 " + str(i + 1) + " 组" + "： 第 " + str(j + 1) + " 个")
-            print(all_barcodes[i * group_len + j])
-        print("")
+    with open("barcodeFile.tsv", "w") as f:
+        for i in range(group_num):
+            f.write("第 " + str(i + 1) + " 组\n")
+            for j in range(group_len):
+                f.write(str(j + 1) + ": " + all_barcodes[i * group_len + j] + "\n")
 
 
 if __name__ == '__main__':
-
     start = time.clock()
 
     parser = argparse.ArgumentParser()
 
-    parser.add_argument(dest = "group_num", help = "组数: 例如为" + str(5), type = int)
-    parser.add_argument(dest = "group_len", help = "每组的barcode个数: 例如为" + str(16), type = int)
-    parser.add_argument(dest = "barcode_len", help = "barcode长度: 例如为" + str(10), type = int)
-    parser.add_argument(dest = "rate", help = "组内每列每种碱基最小占比: 例如为" + str(0.125), type = float)
-    parser.add_argument(dest = "repeat_num", help = "不允许相同碱基连续重复个数: 例如为" + str(3), type = int)
-    parser.add_argument(dest = "min_dist", help = "最小humming距离: 例如为" + str(3), type = int)
+    parser.add_argument(dest="group_num", help="组数: 例如为" + str(5), type=int)
+    parser.add_argument(dest="group_len", help="每组的barcode个数: 例如为" + str(16), type=int)
+    parser.add_argument(dest="barcode_len", help="barcode长度: 例如为" + str(10), type=int)
+    parser.add_argument(dest="rate", help="组内每列每种碱基最小占比: 例如为" + str(0.125), type=float)
+    parser.add_argument(dest="repeat_num", help="不允许相同碱基连续重复个数: 例如为" + str(3), type=int)
+    parser.add_argument(dest="min_dist", help="最小humming距离: 例如为" + str(3), type=int)
 
     args = parser.parse_args()
 
@@ -158,9 +158,8 @@ if __name__ == '__main__':
     repeat_num = args.repeat_num
     min_dist = args.min_dist
 
-    print_barcodes_groups(gen_barcodes_groups(group_num, group_len, barcode_len, rate, repeat_num, min_dist), group_num, group_len)
+    print_barcodes_groups(gen_barcodes_groups(group_num, group_len, barcode_len, rate, repeat_num, min_dist), group_num,
+                          group_len)
 
     elapsed = (time.clock() - start)
-    print("Time used: ",elapsed)
-
-
+    print("Time used: ", elapsed)
