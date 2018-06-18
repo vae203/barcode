@@ -1,10 +1,17 @@
 # barcode
+
 1.程序运行要求
+
     python==3.6.4
+    
     依赖库：
+    
         numpy
+        
         math
+        
         time
+        
         argparse
         
 2.程序运行方法
