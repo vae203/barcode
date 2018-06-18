@@ -125,9 +125,10 @@ def gen_barcodes_groups(group_num, group_len, barcode_len, rate, repeat_num, min
 
 def print_barcodes_groups(all_barcodes, group_num, group_len):
     """
-    按组打印barcodes
-    :param all_barcodes:
-    
+    按组打印barcodes到barcodeFile.tsv
+    :param group_num:
+    :param group_num: 组数
+    :param group_len: 每组的barcode个数
     :return:
     """
     with open("barcodeFile.tsv", "w") as f:
@@ -162,4 +163,5 @@ if __name__ == '__main__':
                           group_len)
 
     elapsed = (time.clock() - start)
+    print("barcodes已写入barcodeFile.tsv")
     print("Time used: ", elapsed)
