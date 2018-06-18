@@ -37,6 +37,7 @@
       -h, --help   show this help message and exit
       
     例如：python barcode.py 5 16 10 0.125 3 3
+         即可得到barcodes在barcodeFile.tsv中
     
 3.程序编写思路
 
